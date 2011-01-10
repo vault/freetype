@@ -1,12 +1,7 @@
 # this is now the default FreeType build for Android
 #
-ifndef USE_FREETYPE
-USE_FREETYPE := 2.4.2
-endif
-
-ifeq ($(USE_FREETYPE),2.4.2)
 LOCAL_PATH:= $(call my-dir)
-include $(CLEAR_VARS)
+#include $(CLEAR_VARS)
 
 # compile in ARM mode, since the glyph loader/renderer is a hotspot
 # when loading complex pages in the browser
@@ -36,6 +31,8 @@ LOCAL_C_INCLUDES += \
 	$(LOCAL_PATH)/builds \
 	$(LOCAL_PATH)/include
 
+LOCAL_EXPORT_C_INCLUDES += $(LOCAL_C_INCLUDES)
+
 LOCAL_CFLAGS += -W -Wall
 LOCAL_CFLAGS += -fPIC -DPIC
 LOCAL_CFLAGS += "-DDARWIN_NO_CARBON"
@@ -56,7 +53,6 @@ endif
 
 LOCAL_CFLAGS += -O2
 
-LOCAL_MODULE:= libft2
+LOCAL_MODULE:= ft2
 
-include $(BUILD_STATIC_LIBRARY)
-endif
+#include $(BUILD_SHARED_LIBRARY)
